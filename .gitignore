@@ -1,2 +1,5 @@
 hd.img
 hdisk/
+build/
+*.o
+*.bin

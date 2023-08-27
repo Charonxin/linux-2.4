@@ -11,9 +11,11 @@ LD = ld
 ASM = nasm
 
 # C_FLAGS = -I ./include/ -I ./linux/ -c -fno-builtin -m32 -fno-stack-protector -nostdinc -fno-pic -gdwarf-2
-C_FLAGS = -I ./include/ -I ./ -c -fno-builtin -m32 -fno-stack-protector -nostdinc -fno-pic -gdwarf-2
+# C_FLAGS = -I ./include/ -I ./ -c -fno-builtin -m32 -fno-stack-protector -nostdinc -fno-pic -gdwarf-2
+C_FLAGS = -I ./include/ -I ./arch/i386/include -c -fno-builtin -m32 -fno-stack-protector -nostdinc -fno-pic -gdwarf-2
 # LD_FLAGS = -m elf_i386 -T ./script/kernel.ld -Map ./build/kernel.map -nostdlib
-LD_FLAGS = -m elf_i386  -nostdlib
+# LD_FLAGS = -m elf_i386  -nostdlib
+LD_FLAGS = -m elf_i386 -T ./script/kernel.ld -Map ./build/kernel.map -nostdlib
 ASM_FLAGS = -f elf -g -F stabs
 
 all: $(S_OBJECTS) $(C_OBJECTS) link update_image

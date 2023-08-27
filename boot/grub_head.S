@@ -52,7 +52,7 @@ start:
 	subl %eax, %esp
     movl $0, %ebp 			//帧指针修改为 0
 	movl $0xB8000, %eax
-	movl $0x07560756, (%eax)
+	movl $0x07560757, (%eax)
 	call kern_entry
 stop:
 	hlt 			 //停机指令，什么也不做，可以降低 CPU 功耗

@@ -1,6 +1,6 @@
 #!Makefile
 
-BUILD_DIR = ./build
+BUILD_DIR = build
 C_SOURCES = $(shell find . -name "*.c")
 C_OBJECTS = $(patsubst %.c, %.o, $(C_SOURCES))
 S_SOURCES = $(shell find . -name "*.S")
@@ -12,7 +12,7 @@ ASM = nasm
 
 # C_FLAGS = -I ./include/ -I ./linux/ -c -fno-builtin -m32 -fno-stack-protector -nostdinc -fno-pic -gdwarf-2
 # C_FLAGS = -I ./include/ -I ./ -c -fno-builtin -m32 -fno-stack-protector -nostdinc -fno-pic -gdwarf-2
-C_FLAGS = -I ./include/ -I ./arch/i386/include/ -c -fno-builtin -m32 -fno-stack-protector -nostdinc -fno-pic -gdwarf-2
+C_FLAGS = -I ./include/ -I ./arch/i386/include/ -c -fno-builtin -m32 -fno-stack-protector -nostdinc -fno-pic -gdwarf-2 -g
 # LD_FLAGS = -m elf_i386 -T ./script/kernel.ld -Map ./build/kernel.map -nostdlib
 # LD_FLAGS = -m elf_i386  -nostdlib
 LD_FLAGS = -m elf_i386 -T ./script/kernel.ld -Map ./build/kernel.map -nostdlib
@@ -26,7 +26,8 @@ all: $(S_OBJECTS) $(C_OBJECTS) link update_image
 
 .S.o:
 	@echo 编译汇编文件 $< ...
-	$(CC) $(C_FLAGS) $< -o $@
+	# $(CC) $(C_FLAGS) $< -o $@
+	$(ASM) $(ASM_FLAGS) $< -o $@
 
 link:
 	@echo 链接内核文件...

@@ -3,7 +3,7 @@
 #include <asm/gdt.h>
 #include <linux/multiboot.h>
 #include <asm/page.h>
-// #include <asm/print.h>
+#include <asm/print.h>
 // #include <asm/pgtable.h>
 
 // 内核栈的栈顶
@@ -21,13 +21,13 @@ extern void *flush;
 // pte_t pte0[1024] __attribute__((__aligned__(PAGE_SIZE))) __attribute__ ((__section__ (".data.init")));   // 0 - 4M
 // pte_t pte1[1024] __attribute__((__aligned__(PAGE_SIZE))) __attribute__ ((__section__ (".data.init")));   // 4 - 8M
 
-// pgd_t pgd[1024] __attribute__((__aligned__(PAGE_SIZE))) __attribute__ ((__section__ (".data.init")));
-// pte_t pte[1024] __attribute__ ((__section__ (".data.init")));
+pgd_t pgd[1024] __attribute__((__aligned__(PAGE_SIZE))) __attribute__ ((__section__ (".data.init")));
+pte_t pte[1024] __attribute__ ((__section__ (".data.init")));
 
-// unsigned long empty_zero_page[1024];
+unsigned long empty_zero_page[1024];
 
-pgd_t pgd[1024];
-pte_t pte[1024];
+// pgd_t pgd[1024];
+// pte_t pte[1024];
 
 /* 创建gdt描述符 */
 static struct gdt_desc __init make_gdt_desc(uint32_t* desc_addr, uint32_t limit, uint8_t attr_low, uint8_t attr_high) {

@@ -49,8 +49,8 @@ start:
 	movl %ebx, (glb_mboot_ptr)	//将 ebx 中存储的指针存入 glb_mboot_ptr 变量
 	movl $0xC0000000, %eax
 	movl (stack_start), %esp 
-//	subl %eax, %esp
-    movl $0, %ebp 			//帧指针修改为 0
+	// subl %eax, %esp
+	movl $0, %ebp 			//帧指针修改为 0
 	and  $0xFFFFFFF0, %esp
 	// movl $0xB8000, %eax
 	// movl $0x07560757, (%eax)
